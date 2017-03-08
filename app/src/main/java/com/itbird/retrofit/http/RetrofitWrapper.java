@@ -1,7 +1,7 @@
 package com.itbird.retrofit.http;
 
+import com.itbird.retrofit.entity.Doctor;
 import com.itbird.retrofit.entity.HttpRequestResult;
-import com.itbird.retrofit.entity.Subject;
 import com.itbird.retrofit.log.HttpLoggingInterceptor;
 
 import java.util.List;
@@ -66,9 +66,9 @@ public class RetrofitWrapper {
      * @param start 起始位置
      * @param count 获取长度
      */
-    public void getTopMovie(Subscriber<List<Subject>> subscriber, int start, int count){
+    public void getTopMovie(Subscriber<List<Doctor>> subscriber, int start, int count){
         Observable observable = mRequestService.getTopMovie(start, count)
-                .map(new HttpResultFunc<List<Subject>>());
+                .map(new HttpResultFunc<List<Doctor>>());
         toSubscribe(observable, subscriber);
     }
 

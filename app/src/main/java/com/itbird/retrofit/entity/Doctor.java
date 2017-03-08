@@ -6,7 +6,7 @@ import java.util.List;
  * 测试数据类
  * Created by xfkang on 17/3/5.
  */
-public class Subject {
+public class Doctor {
 
     private String id;
     private String alt;
@@ -20,10 +20,10 @@ public class Subject {
 
     @Override
     public String toString() {
-        return "Subject.id=" + id
-                + " Subject.title=" + title
-                + " Subject.year=" + year
-                + " Subject.originalTitle=" + original_title + casts.toString() + directors.toString() + " | ";
+        return "Doctor.id=" + id
+                + " Doctor.title=" + title
+                + " Doctor.year=" + year
+                + " Doctor.originalTitle=" + original_title + casts.toString() + directors.toString() + " | ";
     }
 
     public String getId() {

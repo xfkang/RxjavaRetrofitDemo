@@ -1,7 +1,7 @@
 package com.itbird.retrofit.http;
 
 import com.itbird.retrofit.entity.HttpRequestResult;
-import com.itbird.retrofit.entity.Subject;
+import com.itbird.retrofit.entity.Doctor;
 
 import java.util.List;
 
@@ -16,5 +16,5 @@ import rx.Observable;
 public interface RequestService {
 
     @GET("top250")
-    Observable<HttpRequestResult<List<Subject>>> getTopMovie(@Query("start") int start, @Query("count") int count);
+    Observable<HttpRequestResult<List<Doctor>>> getTopMovie(@Query("start") int start, @Query("count") int count);
 }

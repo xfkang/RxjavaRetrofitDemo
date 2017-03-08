@@ -4,14 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
 import com.itbird.retrofit.entity.Subject;
 import com.itbird.retrofit.http.RetrofitWrapper;
 import com.itbird.retrofit.subscribers.ProgressSubscriber;
 import com.itbird.retrofit.subscribers.SubscriberOnNextListener;
-
 import java.util.List;
-
 import com.itbird.R;
 
 public class MainActivity extends AppCompatActivity {

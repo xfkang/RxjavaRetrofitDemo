@@ -2,6 +2,7 @@ package com.itbird.retrofit.http;
 
 import com.itbird.retrofit.entity.HttpRequestResult;
 import com.itbird.retrofit.entity.Subject;
+import com.itbird.retrofit.log.HttpLoggingInterceptor;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -26,12 +27,16 @@ public class RetrofitWrapper {
     private Retrofit mRetrofit;
     private RequestService mRequestService;
     private static RetrofitWrapper instance;
+    private static final boolean DEBUG = true;
 
     //构造方法私有
     private RetrofitWrapper() {
         //手动创建一个OkHttpClient并设置超时时间
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+        if (DEBUG) {
+            builder.addNetworkInterceptor(new HttpLoggingInterceptor());
+        }
         mRetrofit = new Retrofit.Builder()
                 .client(builder.build())
 //                .addConverterFactory(GsonConverterFactory.create())

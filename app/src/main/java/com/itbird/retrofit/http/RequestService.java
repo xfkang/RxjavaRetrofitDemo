@@ -16,5 +16,5 @@ import rx.Observable;
 public interface RequestService {
 
     @GET("top250")
-    Observable<HttpRequestResult<List<Doctor>>> getTopMovie(@Query("start") int start, @Query("count") int count);
+    Observable<HttpRequestResult<List<Doctor>>> getDoctorList(@Query("start") int start, @Query("count") int count);
 }

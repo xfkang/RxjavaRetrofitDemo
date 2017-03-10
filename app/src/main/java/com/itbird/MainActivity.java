@@ -17,16 +17,19 @@ public class MainActivity extends AppCompatActivity {
     private SubscriberOnNextListener getTopMovieOnNext;
     TextView resultTV;
 
+    private RetrofitWrapper mRetrofitWrapper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         resultTV = (TextView) findViewById(R.id.result_TV);
 
+        mRetrofitWrapper = new RetrofitWrapper(this, true, true);
+
         findViewById(R.id.click_me_BN).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RetrofitWrapper.getInstance().getTopMovie(new ProgressSubscriber(getTopMovieOnNext, MainActivity.this), 0, 10);
+                mRetrofitWrapper.getDoctorList(new ProgressSubscriber(getTopMovieOnNext, MainActivity.this), 0, 10);
             }
         });
         getTopMovieOnNext = new SubscriberOnNextListener<List<Doctor>>() {

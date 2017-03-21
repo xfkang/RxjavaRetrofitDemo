@@ -12,9 +12,13 @@ Demo中基于以下几点对于RxJava与Retrofit结合使用实践过程进行�
 
 4.通过一个自定义的ProgressDialog与Subscriber进行结合（请求开始展示，请求结束消失）
 
-2017/03/08 Second Commit
+
+
+2017/03/08
 
 添加自定义日志拦截器HttpLoggingInterceptor，打印的内容有请求的url、请求方法、响应时间、响应状态、响应内容等
+
+
 
 2017/03/10
 

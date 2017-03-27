@@ -10,13 +10,13 @@ import retrofit2.Converter;
 
 /**
  * 自定义gson转换
- * Created by xfkang on 2017/3/17.
+ * Created by itbird on 2017/3/17.
  */
-class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
+class CustomResponseBodyConverter<T> implements Converter<ResponseBody, T> {
     private final Gson gson;
     private final Type type;
 
-    GsonResponseBodyConverter(Gson gson, Type type) {
+    CustomResponseBodyConverter(Gson gson, Type type) {
         this.gson = gson;
         this.type = type;
     }
@@ -29,7 +29,7 @@ class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
         HttpRequestResult httpResult = gson.fromJson(response, HttpRequestResult.class);
         //
         if (httpResult.getResultCode() != 0) {
-            throw new ApiException(100);
+            throw new ApiException(httpResult.getResultCode(), httpResult.getResultMessage());
         }
         return gson.fromJson(response, type);
     }

@@ -5,12 +5,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
-
 import com.itbird.utils.DialogUtils;
+
 
 /**
  * ProgressDialogHandler
- * Created by xfkang on 17/3/1.
+ * Created by itbird on 17/3/1.
  */
 public class ProgressDialogHandler extends Handler {
 

@@ -3,8 +3,8 @@ package com.itbird.retrofit.http;
 import android.content.Context;
 import android.util.Log;
 
-import com.itbird.retrofit.entity.Doctor;
 import com.itbird.retrofit.entity.HttpRequestResult;
+import com.itbird.retrofit.entity.PatientList;
 import com.itbird.retrofit.log.HttpLoggingInterceptor;
 import com.itbird.utils.NetworkUtils;
 
@@ -29,24 +29,28 @@ import rx.schedulers.Schedulers;
 
 /**
  * 对请求方法与请求过程进行封装
- * Created by xfkang on 17/3/1.
+ * Created by itbird on 17/3/1.
  */
 public class RetrofitWrapper {
 
     private static final String TAG = RetrofitWrapper.class.getSimpleName();
-    public static final String BASE_URL = "https://api.douban.com/v2/movie/";
+    public static final String BASE_URL = "http://apptest.hofonyihu.com";
     private static final int DEFAULT_TIMEOUT = 5;
     private static final int DEFAULT_HTTP_CACHE_SIZE = 10 * 1024 * 1024;
     private Retrofit mRetrofit;
     private RequestService mRequestService;
 
-    //构造方法私有
+    /**
+     * @param context
+     * @param isAllowCache 是否允许使用缓存策略
+     * @param cacheMethod  false:有网和没有网都是先读缓存 true:离线可以缓存，在线就获取最新数据 default=false
+     */
     public RetrofitWrapper(Context context, boolean isAllowCache, boolean cacheMethod) {
         mRetrofit = new Retrofit.Builder()
                 .client(getOkHttpClient(context, isAllowCache, cacheMethod))
-//                .addConverterFactory(GsonConverterFactory.create())
-                //对http请求结果进行统一的预处理 GosnResponseBodyConvert
-                .addConverterFactory(ResponseConvertFactory.create())
+                //对http请求结果进行统一的预处理 GosnConvert and 解密
+                //对http请求参数进行统一的处理，例如：加密
+                .addConverterFactory(CustomConvertFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(BASE_URL)
                 .build();
@@ -56,12 +60,11 @@ public class RetrofitWrapper {
 
     /**
      * @param subscriber 由调用者传过来的观察者对象
-     * @param start      起始位置
-     * @param count      获取长度
+     * @param doctorid   doctorid
      */
-    public void getDoctorList(Subscriber<List<Doctor>> subscriber, int start, int count) {
-        Observable observable = mRequestService.getDoctorList(start, count)
-                .map(new HttpResultFunc<List<Doctor>>());
+    public void getPatientList(Subscriber<List<PatientList>> subscriber, int doctorid) {
+        Observable observable = mRequestService.getPatientList(doctorid)
+                .map(new HttpResultFunc<List<PatientList>>());
         toSubscribe(observable, subscriber);
     }
 
@@ -82,7 +85,7 @@ public class RetrofitWrapper {
         @Override
         public T call(HttpRequestResult<T> httpResult) {
             if (httpResult.getResultCode() != 0) {
-                throw new ApiException(100);
+                throw new ApiException(httpResult.getResultCode(), httpResult.getResultMessage());
             }
             return httpResult.getData();
         }

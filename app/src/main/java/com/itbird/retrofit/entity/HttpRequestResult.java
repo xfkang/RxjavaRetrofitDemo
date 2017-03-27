@@ -1,14 +1,20 @@
 package com.itbird.retrofit.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * 请求结果封装类
- * Created by xfkang on 17/3/5.
+ * Created by itbird on 17/3/5.
  */
 public class HttpRequestResult<T> {
 
+    @SerializedName(value = "ResValue")
     private int resultCode;
+
+    @SerializedName(value = "ResInfo")
     private String resultMessage;
-    //用来模仿Data
+
+    @SerializedName(value = "ResData")
     private T data;
 
     public int getResultCode() {

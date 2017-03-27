@@ -3,6 +3,8 @@ package com.itbird.retrofit.log;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.itbird.utils.Logging;
+
 import java.io.EOFException;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -19,7 +21,7 @@ import okio.BufferedSource;
 
 /**
  * 日志拦截操作
- * Created by xfkang on 2017/3/8
+ * Created by itbird on 2017/3/8
  */
 
 public class HttpLoggingInterceptor implements Interceptor {
@@ -53,7 +55,7 @@ public class HttpLoggingInterceptor implements Interceptor {
             RequestBody requestBody = request.body();
             if (requestBody != null) {
                 StringBuilder sb = new StringBuilder("Request Body [");
-                okio.Buffer buffer = new okio.Buffer();
+                Buffer buffer = new Buffer();
                 requestBody.writeTo(buffer);
                 Charset charset = Charset.forName("UTF-8");
                 MediaType contentType = requestBody.contentType();

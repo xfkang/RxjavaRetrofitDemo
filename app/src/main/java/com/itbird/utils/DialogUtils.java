@@ -11,7 +11,7 @@ import com.itbird.R;
 
 /**
  * 对话框创建
- * Created by xfkang on 2017/3/6
+ * Created by itbird on 2017/3/6
  */
 public final class DialogUtils {
 

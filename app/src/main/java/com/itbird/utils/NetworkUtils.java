@@ -6,7 +6,7 @@ import android.os.Build;
 
 /**
  * 网络工具类
- * Created by xfkang on 2016/6/6
+ * Created by itbird on 2016/6/6
  */
 public final class NetworkUtils {
 

@@ -2,10 +2,8 @@ package com.itbird.retrofit.subscribers;
 
 import android.content.Context;
 import android.widget.Toast;
-
 import com.itbird.retrofit.progress.ProgressCancelListener;
 import com.itbird.retrofit.progress.ProgressDialogHandler;
-
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 
@@ -15,9 +13,9 @@ import rx.Subscriber;
  * 用于在Http请求开始时，自动显示一个ProgressDialog
  * 在Http请求结束是，关闭ProgressDialog
  * 调用者自己对请求数据进行处理
- * Created by xfkang on 17/3/1.
+ * Created by itbird on 17/3/1.
  */
-public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCancelListener{
+public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCancelListener {
 
     private SubscriberOnNextListener mSubscriberOnNextListener;
     private ProgressDialogHandler mProgressDialogHandler;
@@ -71,7 +69,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
         } else if (e instanceof ConnectException) {
             Toast.makeText(context, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         dismissProgressDialog();
     }

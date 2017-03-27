@@ -1,7 +1,8 @@
 package com.itbird.retrofit.http;
 
+
 import com.itbird.retrofit.entity.HttpRequestResult;
-import com.itbird.retrofit.entity.Doctor;
+import com.itbird.retrofit.entity.PatientList;
 
 import java.util.List;
 
@@ -11,10 +12,10 @@ import rx.Observable;
 
 /**
  *
- * Created by xfkang on 16/3/9.
+ * Created by itbird on 16/3/9.
  */
 public interface RequestService {
 
-    @GET("top250")
-    Observable<HttpRequestResult<List<Doctor>>> getDoctorList(@Query("start") int start, @Query("count") int count);
+    @GET("/DPost/PatientManage/Index")
+    Observable<HttpRequestResult<List<PatientList>>> getPatientList(@Query("HospitalId") int doctorid);
 }

@@ -1,10 +1,10 @@
-package com.itbird.retrofit.log;
+package com.itbird.utils;
 
 import android.util.Log;
 
 /**
  * 日志记录方法
- * Created by xfkang on 2016/6/6
+ * Created by itbird on 2016/6/6
  */
 public final class Logging {
 
